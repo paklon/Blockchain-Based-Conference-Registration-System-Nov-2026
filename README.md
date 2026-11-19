@@ -1,6 +1,6 @@
 # 🛡️ Blockchain-Based Conference Registration & Attendance System
 
-A decentralized, full-stack conference registration and attendance verification application built with **Go (Gin)** and **React (TypeScript)**. Developed for **DSAI4202**, this system enforces tamper-proof student check-ins via **RSA-PKCS#1 v1.5 digital signatures**, **SHA-256 Proof-of-Work (PoW)** mining, and a **Bitcoin-inspired dynamic difficulty adjustment algorithm**.
+A decentralized, full-stack conference registration and attendance verification application built with **Go (Gin)** and **React (TypeScript)**. Developed as a comprehensive coursework project for **DSAI4202 E-Payment and Cryptocurrency**, this system enforces tamper-proof student check-ins via **RSA-PKCS#1 v1.5 digital signatures**, **SHA-256 Proof-of-Work (PoW)** mining, and a **Bitcoin-inspired dynamic difficulty adjustment algorithm**.
 
 ---
 
@@ -23,24 +23,10 @@ A decentralized, full-stack conference registration and attendance verification 
 
 ---
 
-## 🏗️ System Architecture & Repository Structure
-
-dsai4202-project/
-├── backend/
-│   └── main.go              # Go + Gin REST API, RSA crypto, PoW & dynamic difficulty engine
-├── frontend/
-│   ├── index.html           # Root HTML entry point
-│   └── src/
-│       ├── main.tsx         # React root mount
-│       └── App.tsx          # 5-tab interactive dashboard (Register, Attendance, Miner, Explorer, Query)
-└── README.md
-
----
-
 ## Technology Stack
 
-** Backend: Go (Golang), Gin Web Framework, gin-contrib/cors, Go Standard Crypto Libraries (crypto/rsa, crypto/sha256, crypto/x509, encoding/pem)
-** Frontend: React, TypeScript, Vite
+* Backend: Go (Golang), Gin Web Framework, gin-contrib/cors, Go Standard Crypto Libraries (crypto/rsa, crypto/sha256, crypto/x509, encoding/pem)
+* Frontend: React, TypeScript, Vite
 
 ---
 
@@ -48,50 +34,58 @@ dsai4202-project/
 
 Ensure Go (1.21+) and Node.js (18+) are installed on your machine.
 
-* Step 1: Initialize the Go Backend 
-Open a terminal, navigate to the backend directory, and initialize the Go module and dependencies:
+### Step 1: Initialize the Go Backend 
+* Open a terminal, navigate to the backend directory, and initialize the Go module and dependencies:
+```bash
 cd dsai4202-project/backend
 go mod init conference-backend
 go get -u github.com/gin-gonic/gin
 go get -u github.com/gin-contrib/cors
+```
 (Ensure main.go is placed inside the backend/ folder.)
 
-* Step 2: Initialize the React + TypeScript Frontend
-Return to the project root directory and scaffold the Vite React-TypeScript environment:
+### Step 2: Initialize the React + TypeScript Frontend
+* Return to the project root directory and scaffold the Vite React-TypeScript environment:
+```bash
 cd ..
 npm create vite@latest frontend -- --template react-ts
 cd frontend
 npm install
+```
 (Replace the generated frontend/index.html, frontend/src/main.tsx, and frontend/src/App.tsx with the source files from this repository.)
 
-* Step 3: ▶️ Running & Testing the System
-You will need two terminal windows running concurrently.
+### Step 3: ▶️ Running & Testing the System
+* You will need two terminal windows running concurrently.
 
-1. Start the Backend Server (Go):
+* 1. Start the Backend Server (Go):
+```bash
 cd backend
 go run main.go
+```
 (The Go REST server will start on http://localhost:8080.)
 
-2. Start the Frontend Dashboard (React + TypeScript):
+* 2. Start the Frontend Dashboard (React + TypeScript):
+```bash
 cd frontend
 npm run dev
+```
 (Open your browser and navigate to http://localhost:5173.)
 
 ---
 
-🧪 Quick Walkthrough & Testing Guide
+## 🧪 Quick Walkthrough & Testing Guide
 
-Register (REGISTER Tab): Enter an Attendee ID (e.g., A1), Name, and Email, click Generate RSA Key Pair, and click Register to Blockchain.
+* Register (REGISTER Tab): Enter an Attendee ID (e.g., A1), Name, and Email, click Generate RSA Key Pair, and click Register to Blockchain.
 
-Check-In (ATTENDANCE Tab): Enter A1 and a Session ID (e.g., DSAI4202_Sec1). Submitting an invalid signature string will be rejected (401 Unauthorized). Use a valid RSA-PKCS#1 v1.5 hex signature (or bypass for quick demo testing) to push the record into the pending pool.
+* Check-In (ATTENDANCE Tab): Enter A1 and a Session ID (e.g., DSAI4202_Sec1). Submitting an invalid signature string will be rejected (401 Unauthorized). Use a valid RSA-PKCS#1 v1.5 hex signature (or bypass for quick demo testing) to push the record into the pending pool.
 
-Mine (MINER Tab): Click Start Mining Block (PoW) to validate pending records and mint a new block. Mining 3 consecutive blocks rapidly will trigger the dynamic difficulty algorithm to scale difficulty from 2 to 3.
+* Mine (MINER Tab): Click Start Mining Block (PoW) to validate pending records and mint a new block. Mining 3 consecutive blocks rapidly will trigger the dynamic difficulty algorithm to scale difficulty from 2 to 3.
 
-Inspect (EXPLORER Tab): Verify cryptographic hash chaining (Hash vs. Previous Hash), nonces, and difficulty changes across blocks.
+* Inspect (EXPLORER Tab): Verify cryptographic hash chaining (Hash vs. Previous Hash), nonces, and difficulty changes across blocks.
 
-Audit (QUERY Tab): Query attendance history by attendee_id or extract full session rosters by session_id.
+* Audit (QUERY Tab): Query attendance history by attendee_id or extract full session rosters by session_id.
 
 ---
 
-👤 Author
-Yuen Pak Hei — BSc in Information Security, The Hong Kong Polytechnic University 
+### 👤 Author
+* Yuen Pak Hei — BSc in Information Security, The Hong Kong Polytechnic University 
